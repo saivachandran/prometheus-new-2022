@@ -73,7 +73,7 @@ sudo mv prometheus.yml /etc/prometheus/prometheus.yml
 sudo useradd -s /sbin/nologin --system -g prometheus prometheus
 ```
 
-# Set the ownership of Prometheus files and data directories to the prometheus group and user.
+## Set the ownership of Prometheus files and data directories to the prometheus group and user.
 ```
  sudo chown -R prometheus:prometheus /etc/prometheus/  /var/lib/prometheus/
  ```
@@ -112,4 +112,25 @@ WantedBy=multi-user.target
 
 ```
  
+
+# Start the Prometheus service.
+```
+ sudo systemctl start prometheus
+ ```
+
+# Enable the Prometheus service to run at system startup.
+```
+ sudo systemctl enable prometheus
+ ```
+
+# Check the status of the Prometheus service.
+```
+sudo systemctl status prometheus
+```
+
+# Access Your Server
+
+Access the Prometheus interface through your browser at port 9090. For example:
+
+http://192.0.2.123:9090
 
