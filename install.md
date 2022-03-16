@@ -61,7 +61,55 @@ sudo mv prometheus.yml /etc/prometheus/prometheus.yml
  promtool --version
  ```
 
+3. Configure System Group and User
 
+### Create a prometheus group.
+```
+ sudo groupadd --system prometheus
+ ```
 
+## Create a user prometheus and assign it to the created prometheus group.
+```
+sudo useradd -s /sbin/nologin --system -g prometheus prometheus
+```
+
+# Set the ownership of Prometheus files and data directories to the prometheus group and user.
+```
+ sudo chown -R prometheus:prometheus /etc/prometheus/  /var/lib/prometheus/
+ ```
+ ```
+ sudo chmod -R 775 /etc/prometheus/ /var/lib/prometheus/
+```
+
+### 4. Configure Systemd Service
+
+## Create a systemd service file for Prometheus to start at boot time.
+```
+sudo nano /etc/systemd/system/prometheus.service
+```
+
+Add the following lines to the file and save it:
+```
+[Unit]
+Description=Prometheus
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=prometheus
+Group=prometheus
+Restart=always
+Type=simple
+ExecStart=/usr/local/bin/prometheus \
+    --config.file=/etc/prometheus/prometheus.yml \
+    --storage.tsdb.path=/var/lib/prometheus/ \
+    --web.console.templates=/etc/prometheus/consoles \
+    --web.console.libraries=/etc/prometheus/console_libraries \
+    --web.listen-address=0.0.0.0:9090
+
+[Install]
+WantedBy=multi-user.target
+
+```
  
 
