@@ -26,3 +26,29 @@ sudo useradd -rs /bin/false node_exporter
 ```
 sudo vi /etc/systemd/system/node_exporter.service
 ```
+
+# Step 3: Add the following service file content to the service file and save it.
+```
+[Unit]
+Description=Node Exporter
+After=network.target
+
+[Service]
+User=node_exporter
+Group=node_exporter
+Type=simple
+ExecStart=/usr/local/bin/node_exporter
+
+[Install]
+WantedBy=multi-user.target
+```
+
+# Step 4: Reload the system daemon and star the node exporter service.
+```
+sudo systemctl daemon-reload
+sudo systemctl start node_exporter
+```
+# Step 5: check the node exporter status to make sure it is running in the active state.
+```
+sudo systemctl status node_exporter
+```
