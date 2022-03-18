@@ -95,3 +95,22 @@ sudo systemctl daemon-reload
 sudo systemctl enable mysql_exporter
 sudo systemctl start mysql_exporter
 ```
+
+
+# Configure MySQL endpoint to be scraped by Prometheus Server
+
+# Login to your Prometheus server and Configure endpoint to scrape. Below is an example for two MySQL database servers.
+```
+scrape_configs:
+  - job_name: server1_db
+    static_configs:
+      - targets: ['10.10.1.10:9104']
+        labels:
+          alias: db1
+
+  - job_name: server2_db
+    static_configs:
+      - targets: ['10.10.1.11:9104']
+        labels:
+          alias: db2# 
+```
