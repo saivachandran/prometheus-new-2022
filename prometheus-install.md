@@ -134,3 +134,7 @@ Access the Prometheus interface through your browser at port 9090. For example:
 
 http://192.0.2.123:9090
 
+# prometheus dashboard id for grafana
+```
+3662
+```
