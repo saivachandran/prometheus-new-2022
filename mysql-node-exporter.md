@@ -114,3 +114,8 @@ scrape_configs:
         labels:
           alias: db2# 
 ```
+
+# MySQL Exporter grafana dashboard id
+```
+14057
+```
