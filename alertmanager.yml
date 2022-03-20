@@ -2,7 +2,7 @@ global:
   resolve_timeout: 30s
   smtp_smarthost: 'localhost:25'
   smtp_from: 'no-reply@localhost'
-  slack_api_url: 'https://hooks.slack.com/services/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'
+  slack_api_url: 'url'
 templates:
 #- /var/moniter/alertmanager/slack.tmpl
 - /var/moniter/alertmanager/notifications.tmpl
