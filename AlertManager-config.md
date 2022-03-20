@@ -43,3 +43,40 @@ sudo chown alertmanager:alertmanager /usr/local/bin/amtool /usr/local/bin/alertm
 sudo chown -R alertmanager:alertmanager /data/alertmanager /etc/alertmanager/*
 ```
  
+ # To create a Linux service (using systemd), head over to the /lib/systemd/system folder and create a service named alertmanager.service
+```
+ cd /lib/systemd/system
+ sudo touch alertmanager.service
+ ```
+#  Similarly to our Prometheus, let’s first run the alertmanager executable with a “-h” flag to see our options.
+
+ alertmanager -h
+ 
+#  Edit your service file, and paste the following content inside.
+
+sudo vim alertmanager.service
+```
+[Unit]
+Description=Alert Manager
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=alertmanager
+Group=alertmanager
+ExecStart=/usr/local/bin/alertmanager \
+  --config.file=/etc/alertmanager/alertmanager.yml \
+  --storage.path=/data/alertmanager
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+# Save your file, enable the service and start it.
+```
+ sudo systemctl enable alertmanager
+ sudo systemctl start alertmanager
+ ```
