@@ -56,7 +56,10 @@ Steps to install node_exporter
 
    ```
    sudo systemctl daemon-reload
-   sudo systemctl start node_exporter && sudo journalctl -f --unit node_exporter
+   sudo systemctl start node_exporter 
+   sudo systemctl status node_exporter 
+
+   
    ```
 8. On the prometheus server, dont' forget to add the static config for the collection of data!
 
