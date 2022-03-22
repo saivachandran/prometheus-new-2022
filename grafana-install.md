@@ -8,10 +8,6 @@ wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
 ```
 echo "deb https://packages.grafana.com/enterprise/deb stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
 ```
-# Add this repository if you want beta releases:
-```
-echo "deb https://packages.grafana.com/enterprise/deb beta main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
-```
 # After you add the repository:
 ```
 sudo apt-get update
