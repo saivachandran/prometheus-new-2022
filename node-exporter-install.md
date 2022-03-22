@@ -58,6 +58,8 @@ Steps to install node_exporter
    sudo systemctl daemon-reload
    sudo systemctl start node_exporter 
    sudo systemctl status node_exporter 
+   sudo systemctl enable node_exporter 
+
 
    
    ```
