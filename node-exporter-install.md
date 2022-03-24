@@ -31,7 +31,7 @@ Steps to install node_exporter
 5. Create service file for systemd
 
    ```
-   sudo nano /etc/systemd/system/node_exporter.service
+   sudo vim /etc/systemd/system/node_exporter.service
    ```
 
 6. Fillin as follows:
